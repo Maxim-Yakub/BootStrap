@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
@@ -34,23 +35,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
-
                 .antMatchers("/user").hasAnyRole("USER", "ADMIN")
-
                 .anyRequest().authenticated()
 
                 .and()
                 .formLogin().loginPage("/").successHandler(successUserHandler)
                 .permitAll()
 
-//                .and()
-//                .formLogin().successHandler(successUserHandler)
-//                .permitAll()
-
                 .and()
-                .logout()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .permitAll();
     }
 
