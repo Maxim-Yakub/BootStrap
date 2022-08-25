@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Entity
 @Data
@@ -54,4 +55,9 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public Collection<String> getRolesList() {
+        return roles.stream().map(x->x.getName()).collect(Collectors.toList());
+    }
+
 }
