@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class MainController {
+public class LoginController {
 
     @RequestMapping("/")
     public String getLogin(@RequestParam(value = "error", required = false) String error,
@@ -14,6 +14,6 @@ public class MainController {
                            Model model) {
         model.addAttribute("error", error != null);
         model.addAttribute("logout", logout != null);
-        return "spring_login";
+        return "login";
     }
 }

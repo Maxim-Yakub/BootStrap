@@ -2,27 +2,18 @@
 <!--
 <html lang="en">
 -->
-<html xmlns:th=”http://www.thymeleaf.org”>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--
-    <meta name="description" content="">
-    <meta name="author" content="">
-    -->
-    <title>Login page</title>
-    <link rel="shortcut icon" type="image/x-icon"
-          href="https://spring-projects.ru/wp-content/themes/spring.io.ru/images/favicon.png"/>
 
-    <!--
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
-    -->
-<!--
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
-    -->
-    <link rel="stylesheet" th:href="@{/css/signin.css}"/>
+    <title>Login page</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/styles/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/styles/css/signin.css"/>
 </head>
 <body>
 <div class="container">
