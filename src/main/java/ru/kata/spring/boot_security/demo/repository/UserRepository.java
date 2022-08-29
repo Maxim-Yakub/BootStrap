@@ -16,6 +16,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
            // + "OR user.lastName LIKE CONCAT('%',:keyword,'%')")
     List<User> search(@Param("keyword") String keyword);
 
-    User findByUsername(String username);
+    @Query(value = "SELECT user FROM User user JOIN FETCH user.roles WHERE user.username = :username")
+    User findByUsername(@Param("username") String username);
 
 }
