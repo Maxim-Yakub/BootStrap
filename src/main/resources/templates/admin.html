@@ -39,6 +39,7 @@
                     <a class="nav-link" href="#">Link</a>
                     <a class="nav-link" href="#">Link</a>
                     <a class="nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-link" th:each="role : ${user.getAuthorities()}" th:text="${role.getName()}" />
                 </ul>
             </div>
 
@@ -48,6 +49,21 @@
         </main>
     </div>
 </div>
+<!--ВСТАВИТЬ!!!!!-->
+<div class="container">
+    <ul class="nav nav-tabs" >
+        <li class="nav-item" th:each="bar, barStat: ${bar_list}">
+            <a class="nav-link" th:classappend="${barStat.first} ? 'active'" th:href="@{'#'+ ${bar.title}}" data-toggle="tab"><label th:text="${bar.title}">bar title</label></a>
+        </li>
+    </ul>
+
+    <div class="tab-content" >
+        <div class="tab-pane fade" th:classappend="${barStat.first} ? 'show active'" th:id="${bar.title}" th:each="bar, barStat : ${bar_list}">
+            <p th:text = "${bar.content}">bar content</p>
+        </div>
+    </div>
+</div>
+
 <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"-->
 <!--        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
 <!--        crossorigin="anonymous"></script>-->
