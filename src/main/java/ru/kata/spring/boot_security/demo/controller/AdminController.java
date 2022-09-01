@@ -24,6 +24,7 @@ public class AdminController {
     public String main(Model model, Principal principal) {
         model.addAttribute("user", userService.findByUsername(principal.getName()));
         model.addAttribute("users",userService.getAll());
+        model.addAttribute("listRoles", userService.listRoles());
         return "admin";
     }
 
