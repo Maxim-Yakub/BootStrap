@@ -42,7 +42,7 @@
                 <ul class="nav nav-pills flex-column">
                     <li class="nav-item" th:each="role, barStat : ${user.getRoles()}">
                         <a class="nav-link" th:classappend="${barStat.first} ? 'active'"
-                           th:href="@{'#' + ${role.getName()}}" data-toggle="pill"
+                           th:href="@{${role.getName().toLowerCase()}}" data-toggle="pill"
                            th:text="${role.getName().substring(0,1).toUpperCase()
                                       + role.getName().substring(1).toLowerCase()}"></a>
                     </li>
