@@ -12,7 +12,6 @@
 </head>
 
 <body>
-
 <!--Шапка начало -->
 <nav th:object="${user}" class="navbar navbar-expand navbar-dark fixed-top bg-dark">
     <a class="navbar-brand"
@@ -253,11 +252,48 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     </tr>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- NEW USER -->
+                    <div class="tab-pane fade" id="addUser">
+                        <h4>Add new User</h4>
+                        <div class="col-md bg-white border">
+                            <form align="center" class="offset-md-4 col-md-3 mt-4 mb-4" th:align="center"
+                                   th:method="POST" th:action="@{/admin}" th:object="${user}">
+
+                                <label for="username"><b>Username</b></label>
+                                <input th:name="username" th:field="*{username}" class="form-control" id="username"
+                                       required/>
+
+
+                                <label for="email"><b>Email</b></label>
+                                <input th:name="email" th:type="email" class="form-control" id="email"
+                                       required/>
+
+
+                                <label for="password"><b>Password</b></label>
+                                <input th:name="password" th:type="password" class="form-control" id="password"
+                                       required/>
+
+                                <label for="roles"><b>Role</b></label>
+                                <select multiple class="form-control"
+                                        id="roles" name="roles"
+                                        size="2" required>
+                                    <option th:each="role: ${listRoles}"
+                                            th:text="${role.name}"
+                                            th:value="${role.id}"
+                                            th:selected="${user.getRoles().contains(role)}"></option>
+                                </select>
+
+                                <br>
+                                <button th:type="submit" class="btn btn-success" value="Add new user">
+                                    Add new user
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
