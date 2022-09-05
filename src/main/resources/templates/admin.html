@@ -40,11 +40,11 @@
         <nav class="col-2 p-0 bg-white sidebar border">
             <div class="sidebar-sticky">
                 <ul class="nav nav-pills flex-column">
-                    <li class="nav-item" th:each="role, barStat : ${user.getRoles()}">
-                        <a class="nav-link" th:classappend="${barStat.first} ? 'active'"
-                           th:href="@{${role.getName().toLowerCase()}}" data-toggle="pill"
-                           th:text="${role.getName().substring(0,1).toUpperCase()
-                                      + role.getName().substring(1).toLowerCase()}"></a>
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/admin}">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/user}">User</a>
                     </li>
                 </ul>
             </div>

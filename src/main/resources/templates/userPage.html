@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin panel</title>
+    <title>User page</title>
     <link rel="stylesheet" type="text/css" href="/styles/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="/styles/css/sidebar.css"/>
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
@@ -40,11 +40,11 @@
         <nav class="col-2 p-0 bg-white sidebar border">
             <div class="sidebar-sticky">
                 <ul class="nav nav-pills flex-column">
-                    <li class="nav-item" th:each="role, barStat : ${user.getRoles()}">
-                        <a class="nav-link" th:classappend="${barStat.first} ? 'active'"
-                           th:href="@{'#' + ${role.getName()}}" data-toggle="pill"
-                           th:text="${role.getName().substring(0,1).toUpperCase()
-                                      + role.getName().substring(1).toLowerCase()}"></a>
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                        <a class="nav-link" th:href="@{/admin}">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/user}">User</a>
                     </li>
                 </ul>
             </div>
@@ -55,47 +55,30 @@
         <!--Правая основная панель начало-->
         <div class="col-10 right">
             <div class="container-fluid pt-5 mt-4">
-                <h2>Admin panel</h2>
 
-                <!--Навигация начало-->
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#usersTable">Users Table</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#addUser">New User</a>
-                    </li>
-                </ul>
-                <!--Навигация конец-->
-
+                <h2>User information-page</h2>
                 <!-- Панели от навигации -->
                 <div class="tab-content">
 
                     <!--1. Таблица всех пользователей начало-->
-                    <div class="tab-pane fade show active" id="usersTable">
+                    <div class="tab-pane fade show active">
                         <div class="card">
                             <div class="card-header">
-                                <h4>All users</h4>
+                                <h4>About user</h4>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body bg-white">
                                 <table class="table table-hover">
                                     <tr>
                                         <th>ID</th>
                                         <th>USERNAME</th>
                                         <th>EMAIL</th>
                                         <th>ROLES</th>
-                                        <th>EDIT</th>
-                                        <th>DELETE</th>
                                     </tr>
-
-                                    <tr th:each="user, state : ${users}">
+                                    <tr>
                                         <td th:text="${user.getId()}"></td>
                                         <td th:text="${user.getUsername()}"></td>
                                         <td th:text="${user.getEmail()}"></td>
-                                        <td>
-                                            <li th:each="role: ${user.getRoles()}" th:text="${role.getName()}"></li>
-                                        </td>
-
+                                        <td><a th:each="role : ${user.getRoles()}" th:text="${role.getName()} + ' '"></a></td>
                                     </tr>
                                 </table>
                             </div>
